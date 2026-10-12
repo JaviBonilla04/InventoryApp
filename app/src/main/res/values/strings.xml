@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ProductApp</string>
+    <string name="list_title">Products</string>
+    <string name="btn_add">+</string>
+    <string name="add_title">New Product</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_price">Price</string>
+    <string name="hint_stock">Stock</string>
+    <string name="btn_save">Save</string>
+</resources>
