@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
-
+import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         adapter = ProductAdapter(
             onDeleteClick = {
-                productToDelete -> deleteProduct(productToDelete)
+                productToDelete -> showDeleteConfirmationDialog(productToDelete)
             }
         )
         rvProducts.adapter = adapter
@@ -60,5 +60,20 @@ class MainActivity : AppCompatActivity() {
            val products = dao.getProductList()
             adapter.updateList(products)
         }
+    }
+
+    private fun showDeleteConfirmationDialog(product: Product) {
+        AlertDialog.Builder(this)
+            .setTitle("Eliminar producto")
+            .setMessage("¿Seguro que quieres eliminar el producto?")
+            .setPositiveButton("Eliminar") { dialog, _ ->
+                deleteProduct(product)
+                dialog.dismiss()
+            }
+            .setNegativeButton("Cancelar") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
     }
 }
